@@ -17,7 +17,7 @@
     "lint": "next lint",
     "lints": "lint-staged",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "release:local": "npx semantic-release --dry-run=false",
+    "release:local": "npx semantic-release --no-ci --dry-run=false",
     "prettier": "prettier .",
     "format": "npm run prettier -- --write",
     "check-formats": "npm run prettier -- --list-different",
