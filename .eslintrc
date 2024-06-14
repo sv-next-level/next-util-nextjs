@@ -18,11 +18,8 @@
   },
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": [
-    ".eslintrc.json",
-    "db_migrations",
-    "coverage",
-    "jest.config.js",
-    "jest-mongodb-config.js"
+    "next.config.js",
+    "postcss.config.mjs"
   ],
   "rules": {
     "require-await": "warn",
