@@ -1,4 +1,4 @@
 {
-  "*.(js|ts)": ["prettier --write", "eslint --fix", "eslint"],
-  "!(*.(js|ts))": "npm run prettier -- --write"
+  "*.(jsx|tsx|js|ts)": ["prettier --write", "eslint --fix", "eslint"],
+  "!(*.(jsx|tsx|js|ts))": "npm run prettier -- --write"
 }
