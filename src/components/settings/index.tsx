@@ -6,14 +6,13 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuPortal,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Customizer } from "@/components/theme/customizer";
+import { Customizer } from "@/components/themes/customizer";
 
 export function Settings() {
   return (
@@ -24,7 +23,7 @@ export function Settings() {
           <span className="sr-only">Settings</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" className="mt-2">
+      <DropdownMenuContent align="start" className="mr-4 mt-2">
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             <Paintbrush className="mr-2 size-4" />
@@ -32,9 +31,7 @@ export function Settings() {
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
-              <DropdownMenuItem>
-                <Customizer />
-              </DropdownMenuItem>
+              <Customizer />
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>

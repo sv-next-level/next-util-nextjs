@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 
-export function Theme() {
+export function Themes() {
   const { setTheme, theme } = useTheme();
 
   return (
