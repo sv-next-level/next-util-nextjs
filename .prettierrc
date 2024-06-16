@@ -10,7 +10,7 @@
   "requirePragma": false,
   "semi": true,
   "singleQuote": false,
-  "trailingComma": "all",
+  "trailingComma": "es5",
   "importOrder": [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
