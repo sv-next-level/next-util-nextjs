@@ -9,23 +9,36 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Wrapper } from "@/components/themes/wrapper";
 
 import "@/styles/mdx.css";
 
 import { useTheme as useCustomTheme } from "@/hooks/use-theme";
 
-export function Customizer() {
-  const [mounted, setMounted] = React.useState(false);
-  const { setTheme: setMode, resolvedTheme: mode } = useTheme();
+interface CustomizerProps {
+  setOpen: React.Dispatch<React.SetStateAction<true | undefined>>;
+}
+export function Customizer(props: CustomizerProps) {
+  const { resolvedTheme, setTheme } = useTheme();
   const { theme, updateTheme } = useCustomTheme();
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
   return (
-    <div className="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950">
+    <div
+      className="z-40 mr-4 mt-2 rounded-[0.5rem] border bg-white p-6 dark:bg-zinc-950"
+      onMouseEnter={() => props.setOpen(true)}
+      onMouseLeave={() => props.setOpen(undefined)}
+    >
       <Wrapper className="flex flex-col space-y-4 md:space-y-6">
         <div className="flex items-start pt-4 md:pt-0">
           <div className="space-y-1 pr-2">
@@ -36,21 +49,28 @@ export function Customizer() {
               Pick a style and color for your components.
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="ml-auto rounded-[0.5rem]"
-            onClick={() => {
-              updateTheme({
-                ...theme,
-                name: "zinc",
-                radius: 0.5,
-              });
-            }}
-          >
-            <ResetIcon />
-            <span className="sr-only">Reset</span>
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="ml-auto"
+                  onClick={() => {
+                    updateTheme({
+                      ...theme,
+                      name: "zinc",
+                      radius: 0.5,
+                    });
+                  }}
+                >
+                  <ResetIcon />
+                  <span className="sr-only">Reset theme</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Reset theme</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <div className="flex flex-1 flex-col space-y-4 md:space-y-6">
           <div className="space-y-1.5">
@@ -77,7 +97,9 @@ export function Customizer() {
                     style={
                       {
                         "--theme-primary": `hsl(${
-                          t?.activeColor[mode === "dark" ? "dark" : "light"]
+                          t?.activeColor[
+                            resolvedTheme === "dark" ? "dark" : "light"
+                          ]
                         })`,
                       } as React.CSSProperties
                     }
@@ -131,9 +153,9 @@ export function Customizer() {
                   <Button
                     variant={"outline"}
                     size="sm"
-                    onClick={() => setMode("light")}
+                    onClick={() => setTheme("light")}
                     className={cn(
-                      mode === "light" && "border-2 border-primary"
+                      resolvedTheme === "light" && "border-2 border-primary"
                     )}
                   >
                     <SunIcon className="mr-1 -translate-x-1" />
@@ -142,8 +164,10 @@ export function Customizer() {
                   <Button
                     variant={"outline"}
                     size="sm"
-                    onClick={() => setMode("dark")}
-                    className={cn(mode === "dark" && "border-2 border-primary")}
+                    onClick={() => setTheme("dark")}
+                    className={cn(
+                      resolvedTheme === "dark" && "border-2 border-primary"
+                    )}
                   >
                     <MoonIcon className="mr-1 -translate-x-1" />
                     Dark
