@@ -1,9 +1,9 @@
 "use client";
 
+import { GripIcon } from "@/assets";
 import {
   CandlestickChart,
   CircleUser,
-  Grip,
   LayoutDashboard,
   Notebook,
 } from "lucide-react";
@@ -22,7 +22,7 @@ export function Apps() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="size-9 rounded-full">
-          <Grip className="size-5" />
+          <GripIcon className="size-5" />
           <span className="sr-only">Apps</span>
         </Button>
       </DropdownMenuTrigger>

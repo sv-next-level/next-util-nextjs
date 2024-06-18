@@ -1,6 +1,6 @@
 "use client";
 
-import { Settings as SettingsIcon } from "lucide-react";
+import { SettingsIcon } from "@/assets";
 
 import { Button } from "@/components/ui/button";
 import {

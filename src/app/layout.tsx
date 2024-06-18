@@ -6,6 +6,7 @@ import "@/styles/themes.css";
 
 import { siteConfig } from "@/config/site";
 import { Provider as ReduxStoreProvider } from "@/lib/redux/store";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Provider as ThemeProvider } from "@/components/themes/provider";
 import { Wrapper as ThemeWrapper } from "@/components/themes/wrapper";
 
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <ReduxStoreProvider>
           <ThemeWrapper>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              {children}
+              <>
+                {children}
+                <TailwindIndicator />
+              </>
             </ThemeProvider>
           </ThemeWrapper>
         </ReduxStoreProvider>

@@ -2,13 +2,11 @@
 
 import * as React from "react";
 import { themes } from "@/registry/themes";
-import { CheckIcon, MoonIcon, ResetIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
@@ -19,19 +17,18 @@ import { Wrapper } from "@/components/themes/wrapper";
 
 import "@/styles/mdx.css";
 
+import { CheckIcon, RefreshCwIcon } from "@/assets";
+import { modes } from "@/registry/mode";
+import { Radius, radius } from "@/registry/radius";
+
 import { useTheme as useCustomTheme } from "@/hooks/use-theme";
 
 interface CustomizerProps {
   setOpen: React.Dispatch<React.SetStateAction<true | undefined>>;
 }
 export function Customizer(props: CustomizerProps) {
-  const { resolvedTheme, setTheme } = useTheme();
-  const { theme, updateTheme } = useCustomTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { theme: customeTheme, updateTheme } = useCustomTheme();
+  const { theme: resolvedTheme, setTheme } = useTheme();
 
   return (
     <div
@@ -58,13 +55,14 @@ export function Customizer(props: CustomizerProps) {
                   className="ml-auto"
                   onClick={() => {
                     updateTheme({
-                      ...theme,
+                      ...customeTheme,
                       name: "zinc",
                       radius: 0.5,
                     });
+                    setTheme("system");
                   }}
                 >
-                  <ResetIcon />
+                  <RefreshCwIcon className="size-4" />
                   <span className="sr-only">Reset theme</span>
                 </Button>
               </TooltipTrigger>
@@ -76,18 +74,17 @@ export function Customizer(props: CustomizerProps) {
           <div className="space-y-1.5">
             <Label className="text-xs">Color</Label>
             <div className="grid grid-cols-3 gap-2">
-              {themes.map((t) => {
-                const isActive = theme.name === t.name;
-
-                return mounted ? (
+              {themes.map((theme) => {
+                const isActive = customeTheme.name === theme.name;
+                return (
                   <Button
-                    variant={"outline"}
                     size="sm"
-                    key={t.name}
+                    key={theme.name}
+                    variant={"outline"}
                     onClick={() => {
                       updateTheme({
-                        ...theme,
-                        name: t.name,
+                        ...customeTheme,
+                        name: theme.name,
                       });
                     }}
                     className={cn(
@@ -97,7 +94,7 @@ export function Customizer(props: CustomizerProps) {
                     style={
                       {
                         "--theme-primary": `hsl(${
-                          t?.activeColor[
+                          theme?.activeColor[
                             resolvedTheme === "dark" ? "dark" : "light"
                           ]
                         })`,
@@ -111,10 +108,8 @@ export function Customizer(props: CustomizerProps) {
                     >
                       {isActive && <CheckIcon className="size-4 text-white" />}
                     </span>
-                    {t.label}
+                    {theme.label}
                   </Button>
-                ) : (
-                  <Skeleton className="h-8 w-full" key={t.name} />
                 );
               })}
             </div>
@@ -122,21 +117,20 @@ export function Customizer(props: CustomizerProps) {
           <div className="space-y-1.5">
             <Label className="text-xs">Radius</Label>
             <div className="grid grid-cols-5 gap-2">
-              {["0", "0.25", "0.5", "0.75", "1"].map((value) => {
+              {radius.map((value: Radius) => {
                 return (
                   <Button
-                    variant={"outline"}
                     size="sm"
                     key={value}
+                    variant={"outline"}
                     onClick={() => {
                       updateTheme({
-                        ...theme,
-                        radius: parseFloat(value),
+                        ...customeTheme,
+                        radius: value,
                       });
                     }}
                     className={cn(
-                      theme.radius === parseFloat(value) &&
-                        "border-2 border-primary"
+                      customeTheme.radius === value && "border-2 border-primary"
                     )}
                   >
                     {value}
@@ -148,37 +142,22 @@ export function Customizer(props: CustomizerProps) {
           <div className="space-y-1.5">
             <Label className="text-xs">Mode</Label>
             <div className="grid grid-cols-3 gap-2">
-              {mounted ? (
-                <>
+              {modes.map((mode) => {
+                return (
                   <Button
-                    variant={"outline"}
                     size="sm"
-                    onClick={() => setTheme("light")}
+                    key={mode.name}
+                    variant={"outline"}
+                    onClick={() => setTheme(mode.name)}
                     className={cn(
-                      resolvedTheme === "light" && "border-2 border-primary"
+                      resolvedTheme === mode.name && "border-2 border-primary"
                     )}
                   >
-                    <SunIcon className="mr-1 -translate-x-1" />
-                    Light
+                    <mode.icon className="mr-1 size-4 -translate-x-1" />
+                    {mode.label}
                   </Button>
-                  <Button
-                    variant={"outline"}
-                    size="sm"
-                    onClick={() => setTheme("dark")}
-                    className={cn(
-                      resolvedTheme === "dark" && "border-2 border-primary"
-                    )}
-                  >
-                    <MoonIcon className="mr-1 -translate-x-1" />
-                    Dark
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Skeleton className="h-8 w-full" />
-                  <Skeleton className="h-8 w-full" />
-                </>
-              )}
+                );
+              })}
             </div>
           </div>
         </div>

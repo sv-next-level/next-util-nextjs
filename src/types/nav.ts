@@ -1,12 +1,11 @@
-import { Icons } from "@/components/icons";
-
 export interface NavItem {
   title: string;
   href?: string;
+  label?: string;
+  variant?: string;
   disabled?: boolean;
   external?: boolean;
-  icon?: keyof typeof Icons;
-  label?: string;
+  icon?: JSX.Element;
 }
 
 export interface NavItemWithChildren extends NavItem {

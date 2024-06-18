@@ -1,17 +1,18 @@
-import { Style } from "@/registry/styles";
-import { Theme } from "@/registry/themes";
+import { Radius, radius } from "@/registry/radius";
+import { Style, styles } from "@/registry/styles";
+import { Theme, themes } from "@/registry/themes";
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface ThemeState {
   name: Theme["name"];
   style: Style["name"];
-  radius: number;
+  radius: Radius;
 }
 
 const initialState: ThemeState = {
-  style: "new-york",
-  name: "zinc",
-  radius: 0.5,
+  name: themes[0].name,
+  style: styles[0].name,
+  radius: radius[2],
 };
 
 export const themeSlice = createSlice({
