@@ -29,7 +29,7 @@ export function Themes() {
           <Button
             variant="ghost"
             size="icon"
-            className="my-auto size-9 rounded-full"
+            className="size-9 rounded-full"
             onClick={() => {
               let currentTheme: string;
               if (theme !== modes[2].name) {

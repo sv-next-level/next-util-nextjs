@@ -11,7 +11,7 @@ export interface ThemeState {
 
 const initialState: ThemeState = {
   name: themes[0].name,
-  style: styles[0].name,
+  style: styles[1].name,
   radius: radius[2],
 };
 
