@@ -18,10 +18,11 @@ import { Wrapper } from "@/components/themes/wrapper";
 import "@/styles/mdx.css";
 
 import { CheckIcon, RefreshCwIcon } from "@/assets";
+import { useTheme as useCustomTheme } from "@/hooks";
 import { modes } from "@/registry/mode";
 import { Radius, radius } from "@/registry/radius";
 
-import { useTheme as useCustomTheme } from "@/hooks/use-theme";
+import { initialState } from "@/lib/redux/features";
 
 interface CustomizerProps {
   setOpen: React.Dispatch<React.SetStateAction<true | undefined>>;
@@ -29,6 +30,10 @@ interface CustomizerProps {
 export function Customizer(props: CustomizerProps) {
   const { theme: customeTheme, updateTheme } = useCustomTheme();
   const { theme: resolvedTheme, setTheme } = useTheme();
+
+  const getTheme = (theme: string) => {
+    return theme === modes[0].name ? modes[1].name : modes[0].name;
+  };
 
   return (
     <div
@@ -54,12 +59,8 @@ export function Customizer(props: CustomizerProps) {
                   size="icon"
                   className="ml-auto"
                   onClick={() => {
-                    updateTheme({
-                      ...customeTheme,
-                      name: "zinc",
-                      radius: 0.5,
-                    });
-                    setTheme("system");
+                    updateTheme(initialState);
+                    setTheme(modes[2].name);
                   }}
                 >
                   <RefreshCwIcon className="size-4" />
@@ -94,9 +95,7 @@ export function Customizer(props: CustomizerProps) {
                     style={
                       {
                         "--theme-primary": `hsl(${
-                          theme?.activeColor[
-                            resolvedTheme === "dark" ? "dark" : "light"
-                          ]
+                          theme?.activeColor[getTheme(resolvedTheme as string)]
                         })`,
                       } as React.CSSProperties
                     }
@@ -148,7 +147,13 @@ export function Customizer(props: CustomizerProps) {
                     size="sm"
                     key={mode.name}
                     variant={"outline"}
-                    onClick={() => setTheme(mode.name)}
+                    onClick={() => {
+                      updateTheme({
+                        ...customeTheme,
+                        mode: mode.name,
+                      });
+                      setTheme(mode.name);
+                    }}
                     className={cn(
                       resolvedTheme === mode.name && "border-2 border-primary"
                     )}
