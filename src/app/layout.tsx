@@ -7,7 +7,7 @@ import "@/styles/themes.css";
 import { siteConfig } from "@/config/site";
 import { Provider as ReduxStoreProvider } from "@/lib/redux/store";
 import { TopLoading } from "@/components/loading";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { TailwindIndicator } from "@/components/misc/tailwind-indicator";
 import { Provider as ThemeProvider } from "@/components/themes/provider";
 import { Wrapper as ThemeWrapper } from "@/components/themes/wrapper";
 
