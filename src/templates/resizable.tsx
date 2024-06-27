@@ -13,59 +13,104 @@ import { Apps } from "@/components/apps";
 import { Settings } from "@/components/settings";
 import { Themes } from "@/components/themes";
 
-export function Resizable() {
+interface ResizableProps {
+  top?: number;
+  left?: number;
+  right?: number;
+  bottom?: number;
+}
+
+export function Resizable(props: ResizableProps) {
+  const [_window, setWindowObject] = React.useState<any>(null);
+  const screenWidth = _window?.screen.width;
+  const screenHeight = _window?.screen.height;
+  const top = 100 - ((screenHeight - (props.top ?? 0)) / screenHeight) * 100;
+  const left = 100 - ((screenWidth - (props.left ?? 0)) / screenWidth) * 100;
+  const right = 100 - ((screenWidth - (props.right ?? 0)) / screenWidth) * 100;
+  const bottom =
+    100 - ((screenHeight - (props.bottom ?? 0)) / screenHeight) * 100;
+
+  React.useEffect(() => {
+    setWindowObject(globalThis.window);
+  }, []);
+
   return (
-    <ResizablePanelGroup direction="vertical">
-      <ResizablePanel defaultSize={6} className="flex justify-between">
-        <div>header</div>
-        <div className="my-auto ml-2 mr-4 flex gap-2">
-          <Link href="/" className="my-auto text-primary underline">
-            Loader
-          </Link>
-          <Themes />
-          <Settings />
-          <Apps />
-          <Accounts />
-        </div>
-      </ResizablePanel>
-      <ResizableHandle disabled />
+    <>
+      {_window ? (
+        <ResizablePanelGroup direction="vertical">
+          {top ? (
+            <>
+              <ResizablePanel
+                defaultSize={top}
+                className="flex justify-between"
+              >
+                <div>header</div>
+                <div className="my-auto ml-2 mr-4 flex gap-2">
+                  <Link href="/" className="my-auto text-primary underline">
+                    Loader
+                  </Link>
+                  <Themes />
+                  <Settings />
+                  <Apps />
+                  <Accounts />
+                </div>
+              </ResizablePanel>
+              <ResizableHandle disabled className="hover:bg-secondary" />
+            </>
+          ) : null}
 
-      <ResizablePanel defaultSize={88}>
-        <ResizablePanelGroup direction="horizontal">
-          <ResizablePanel defaultSize={3}>sidebar left</ResizablePanel>
-          <ResizableHandle />
-
-          <ResizablePanel defaultSize={94}>
-            <ResizablePanelGroup direction="vertical">
-              <ResizablePanel defaultSize={30}>content top</ResizablePanel>
-              <ResizableHandle />
-
-              <ResizablePanel defaultSize={40}>
-                <ResizablePanelGroup direction="horizontal">
-                  <ResizablePanel defaultSize={30}>content left</ResizablePanel>
-                  <ResizableHandle />
-                  <ResizablePanel defaultSize={40}>
-                    content middle
+          <ResizablePanel defaultSize={100 - top - bottom}>
+            <ResizablePanelGroup direction="horizontal">
+              {left ? (
+                <>
+                  <ResizablePanel defaultSize={left}>
+                    sidebar left
                   </ResizablePanel>
                   <ResizableHandle />
+                </>
+              ) : null}
+
+              <ResizablePanel>
+                <ResizablePanelGroup direction="vertical">
+                  <ResizablePanel>content top</ResizablePanel>
+                  <ResizableHandle />
+
+                  <ResizablePanel>
+                    <ResizablePanelGroup direction="horizontal">
+                      <ResizablePanel>content left</ResizablePanel>
+                      <ResizableHandle />
+                      <ResizablePanel>content middle</ResizablePanel>
+                      <ResizableHandle />
+                      <ResizablePanel>content rigth</ResizablePanel>
+                    </ResizablePanelGroup>
+                  </ResizablePanel>
+
+                  <ResizableHandle />
                   <ResizablePanel defaultSize={30}>
-                    content rigth
+                    content bottom
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </ResizablePanel>
 
-              <ResizableHandle />
-              <ResizablePanel defaultSize={30}>content bottom</ResizablePanel>
+              {right ? (
+                <>
+                  <ResizableHandle />
+                  <ResizablePanel defaultSize={right}>
+                    sidebar right
+                  </ResizablePanel>
+                </>
+              ) : null}
             </ResizablePanelGroup>
           </ResizablePanel>
 
-          <ResizableHandle />
-          <ResizablePanel defaultSize={3}>sidebar right</ResizablePanel>
+          {bottom ? (
+            <>
+              <ResizableHandle />
+              <ResizablePanel defaultSize={bottom}>footer</ResizablePanel>
+            </>
+          ) : null}
         </ResizablePanelGroup>
-      </ResizablePanel>
-
-      <ResizableHandle />
-      <ResizablePanel defaultSize={6}>footer</ResizablePanel>
-    </ResizablePanelGroup>
+      ) : null}
+    </>
   );
 }
