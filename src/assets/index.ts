@@ -1,1 +1,1 @@
-export * from "@/assets/icons";
+export * from "@/nextjs/assets/icons";

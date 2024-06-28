@@ -1,9 +1,9 @@
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
-export * from "@/assets/icons/accessibility";
-export * from "@/assets/icons/arrow";
-export * from "@/assets/icons/layout";
-export * from "@/assets/icons/notification";
-export * from "@/assets/icons/shape";
-export * from "@/assets/icons/social";
-export * from "@/assets/icons/tool";
+export * from "@/nextjs/assets/icons/accessibility";
+export * from "@/nextjs/assets/icons/arrow";
+export * from "@/nextjs/assets/icons/layout";
+export * from "@/nextjs/assets/icons/notification";
+export * from "@/nextjs/assets/icons/shape";
+export * from "@/nextjs/assets/icons/social";
+export * from "@/nextjs/assets/icons/tool";

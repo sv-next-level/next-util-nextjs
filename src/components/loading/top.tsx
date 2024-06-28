@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTheme as useCustomTheme } from "@/hooks";
-import { modes } from "@/registry/mode";
-import { themes } from "@/registry/themes";
 import { useTheme } from "next-themes";
 import NextTopLoader from "nextjs-toploader";
+
+import { useTheme as useCustomTheme } from "@/nextjs/hooks";
+import { modes, themes } from "@/nextjs/registry";
 
 export function TopLoading() {
   const { theme: customTheme } = useCustomTheme();

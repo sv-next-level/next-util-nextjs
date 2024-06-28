@@ -1,2 +1,2 @@
-export * from "@/assets/icons/arrow/chevron-right";
-export * from "@/assets/icons/arrow/refresh-cw";
+export * from "@/nextjs/assets/icons/arrow/chevron-right";
+export * from "@/nextjs/assets/icons/arrow/refresh-cw";

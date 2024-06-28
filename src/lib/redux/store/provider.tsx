@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Provider as ReduxStoreProvider } from "react-redux";
 
-import { AppStore, makeStore } from "@/lib/redux/store";
+import { AppStore, makeStore } from "@/nextjs/lib/redux/store";
 
 interface ReduxProviderLayoutProps {
   children: React.ReactNode;

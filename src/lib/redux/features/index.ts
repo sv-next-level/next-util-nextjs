@@ -1,1 +1,1 @@
-export * from "@/lib/redux/features/theme/slice";
+export * from "@/nextjs/lib/redux/features/theme/slice";

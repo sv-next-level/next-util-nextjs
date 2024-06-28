@@ -7,11 +7,12 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import { Accounts } from "@/components/accounts";
-import { Apps } from "@/components/apps";
-import { Settings } from "@/components/settings";
-import { Themes } from "@/components/themes";
+} from "@/nextjs/components/ui/resizable";
+
+import { Accounts } from "@/nextjs/components/accounts";
+import { Apps } from "@/nextjs/components/apps";
+import { Settings } from "@/nextjs/components/settings";
+import { Themes } from "@/nextjs/components/themes";
 
 interface ResizableProps {
   top?: number;
@@ -55,7 +56,10 @@ export function Resizable(props: ResizableProps) {
                   <Accounts />
                 </div>
               </ResizablePanel>
-              <ResizableHandle disabled className="hover:bg-secondary" />
+              <ResizableHandle
+                disabled
+                className="hover:bg-secondary active:bg-secondary"
+              />
             </>
           ) : null}
 

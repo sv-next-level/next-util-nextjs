@@ -1,1 +1,1 @@
-export * from "@/components/loading/top";
+export * from "@/nextjs/components/loading/top";

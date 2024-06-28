@@ -1,6 +1,5 @@
 "use client";
 
-import { GripIcon } from "@/assets";
 import {
   CandlestickChart,
   CircleUser,
@@ -8,14 +7,16 @@ import {
   Notebook,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/nextjs/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/nextjs/components/ui/dropdown-menu";
+
+import { GripIcon } from "@/nextjs/assets";
 
 export function Apps() {
   return (

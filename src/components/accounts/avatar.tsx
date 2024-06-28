@@ -1,5 +1,10 @@
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/nextjs/lib/utils";
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/nextjs/components/ui/avatar";
 
 export function AccountAvatar() {
   return (

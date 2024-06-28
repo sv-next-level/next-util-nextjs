@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon, SunMoonIcon } from "@/assets";
+import { MoonIcon, SunIcon, SunMoonIcon } from "@/nextjs/assets";
 
 export const modes = [
   {

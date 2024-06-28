@@ -1,8 +1,15 @@
-import { Mode, modes } from "@/registry/mode";
-import { Radius, radius } from "@/registry/radius";
-import { Style, styles } from "@/registry/styles";
-import { Theme, themes } from "@/registry/themes";
 import { createSlice } from "@reduxjs/toolkit";
+
+import {
+  Mode,
+  modes,
+  Radius,
+  radius,
+  Style,
+  styles,
+  Theme,
+  themes,
+} from "@/nextjs/registry";
 
 export interface ThemeState {
   mode: Mode["name"];

@@ -1,3 +1,3 @@
-export * from "@/assets/icons/accessibility/sun";
-export * from "@/assets/icons/accessibility/moon";
-export * from "@/assets/icons/accessibility/sun-moon";
+export * from "@/nextjs/assets/icons/accessibility/sun";
+export * from "@/nextjs/assets/icons/accessibility/moon";
+export * from "@/nextjs/assets/icons/accessibility/sun-moon";

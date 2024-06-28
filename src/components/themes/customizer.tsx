@@ -1,28 +1,27 @@
 "use client";
 
 import * as React from "react";
-import { themes } from "@/registry/themes";
 import { useTheme } from "next-themes";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { initialState } from "@/nextjs/lib/redux/features";
+import { cn } from "@/nextjs/lib/utils";
+
+import { Button } from "@/nextjs/components/ui/button";
+import { Label } from "@/nextjs/components/ui/label";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Wrapper } from "@/components/themes/wrapper";
+} from "@/nextjs/components/ui/tooltip";
 
-import "@/styles/mdx.css";
+import { Wrapper } from "@/nextjs/components/themes/wrapper";
 
-import { CheckIcon, RefreshCwIcon } from "@/assets";
-import { useTheme as useCustomTheme } from "@/hooks";
-import { modes } from "@/registry/mode";
-import { Radius, radius } from "@/registry/radius";
+import "@/nextjs/styles/mdx.css";
 
-import { initialState } from "@/lib/redux/features";
+import { CheckIcon, RefreshCwIcon } from "@/nextjs/assets";
+import { useTheme as useCustomTheme } from "@/nextjs/hooks";
+import { modes, Radius, radius, themes } from "@/nextjs/registry";
 
 interface CustomizerProps {
   setOpen: React.Dispatch<React.SetStateAction<true | undefined>>;
@@ -90,7 +89,7 @@ export function Customizer(props: CustomizerProps) {
                     }}
                     className={cn(
                       "justify-start",
-                      isActive && "border-2 border-primary"
+                      isActive && "border-2 border-primary",
                     )}
                     style={
                       {
@@ -102,7 +101,7 @@ export function Customizer(props: CustomizerProps) {
                   >
                     <span
                       className={cn(
-                        "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+                        "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]",
                       )}
                     >
                       {isActive && <CheckIcon className="size-4 text-white" />}
@@ -129,7 +128,8 @@ export function Customizer(props: CustomizerProps) {
                       });
                     }}
                     className={cn(
-                      customeTheme.radius === value && "border-2 border-primary"
+                      customeTheme.radius === value &&
+                        "border-2 border-primary",
                     )}
                   >
                     {value}
@@ -155,7 +155,7 @@ export function Customizer(props: CustomizerProps) {
                       setTheme(mode.name);
                     }}
                     className={cn(
-                      resolvedTheme === mode.name && "border-2 border-primary"
+                      resolvedTheme === mode.name && "border-2 border-primary",
                     )}
                   >
                     <mode.icon className="mr-1 size-4 -translate-x-1" />

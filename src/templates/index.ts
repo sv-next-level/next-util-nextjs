@@ -1,1 +1,1 @@
-export * from "@/templates/resizable";
+export * from "@/nextjs/templates/resizable";

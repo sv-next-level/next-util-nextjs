@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/nextjs/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,8 +11,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { AccountAvatar } from "@/components/accounts/avatar";
+} from "@/nextjs/components/ui/dropdown-menu";
+
+import { AccountAvatar } from "@/nextjs/components/accounts/avatar";
 
 const items = [
   {

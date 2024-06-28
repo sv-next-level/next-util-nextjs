@@ -1,1 +1,1 @@
-export * from "@/assets/icons/shape/dot";
+export * from "@/nextjs/assets/icons/shape/dot";

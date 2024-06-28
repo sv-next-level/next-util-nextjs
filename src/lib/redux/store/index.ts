@@ -1,3 +1,3 @@
-export * from "@/lib/redux/store/hook";
-export * from "@/lib/redux/store/store";
-export * from "@/lib/redux/store/provider";
+export * from "@/nextjs/lib/redux/store/hook";
+export * from "@/nextjs/lib/redux/store/store";
+export * from "@/nextjs/lib/redux/store/provider";

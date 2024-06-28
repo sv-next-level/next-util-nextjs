@@ -1,3 +1,3 @@
-export * from "@/assets/icons/layout/grip";
-export * from "@/assets/icons/layout/grip-vertical";
-export * from "@/assets/icons/layout/layout-template";
+export * from "@/nextjs/assets/icons/layout/grip";
+export * from "@/nextjs/assets/icons/layout/grip-vertical";
+export * from "@/nextjs/assets/icons/layout/layout-template";

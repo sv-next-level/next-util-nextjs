@@ -1,5 +1,5 @@
-import { setTheme, ThemeState } from "@/lib/redux/features";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import { setTheme, ThemeState } from "@/nextjs/lib/redux/features";
+import { useAppDispatch, useAppSelector } from "@/nextjs/lib/redux/store";
 
 export function useTheme() {
   const dispatch = useAppDispatch();

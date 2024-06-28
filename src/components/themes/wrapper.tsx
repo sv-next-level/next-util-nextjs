@@ -1,8 +1,8 @@
 "use client";
 
-import { useTheme } from "@/hooks";
+import { cn } from "@/nextjs/lib/utils";
 
-import { cn } from "@/lib/utils";
+import { useTheme } from "@/nextjs/hooks";
 
 interface ThemeWrapperProps extends React.ComponentProps<"div"> {
   defaultTheme?: string;

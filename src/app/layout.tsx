@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "@/styles/globals.css";
-import "@/styles/themes.css";
+import "@/nextjs/styles/globals.css";
+import "@/nextjs/styles/themes.css";
 
-import { siteConfig } from "@/config/site";
-import { Provider as ReduxStoreProvider } from "@/lib/redux/store";
-import { TopLoading } from "@/components/loading";
-import { TailwindIndicator } from "@/components/misc/tailwind-indicator";
-import { Provider as ThemeProvider } from "@/components/themes/provider";
-import { Wrapper as ThemeWrapper } from "@/components/themes/wrapper";
+import { siteConfig } from "@/nextjs/config/site";
+import { Provider as ReduxStoreProvider } from "@/nextjs/lib/redux/store";
+
+import { TopLoading } from "@/nextjs/components/loading";
+import { TailwindIndicator } from "@/nextjs/components/misc/tailwind-indicator";
+import { Provider as ThemeProvider } from "@/nextjs/components/themes/provider";
+import { Wrapper as ThemeWrapper } from "@/nextjs/components/themes/wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 

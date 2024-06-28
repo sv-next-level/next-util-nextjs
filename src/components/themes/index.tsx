@@ -1,18 +1,20 @@
 "use client";
 
 import * as React from "react";
-import { MoonIcon, SunIcon } from "@/assets";
-import { modes } from "@/registry/mode";
 import { useTheme } from "next-themes";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/nextjs/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Customizer } from "@/components/themes/customizer";
+} from "@/nextjs/components/ui/tooltip";
+
+import { Customizer } from "@/nextjs/components/themes/customizer";
+
+import { MoonIcon, SunIcon } from "@/nextjs/assets";
+import { modes } from "@/nextjs/registry";
 
 export function Themes() {
   const { theme, systemTheme, setTheme } = useTheme();

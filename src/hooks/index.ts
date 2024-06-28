@@ -1,1 +1,1 @@
-export * from "@/hooks/use-theme";
+export * from "@/nextjs/hooks/use-theme";
