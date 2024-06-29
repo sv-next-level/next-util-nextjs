@@ -4,6 +4,8 @@ import * as React from "react";
 
 import Link from "next/link";
 
+import { pixelTOPercentage } from "@/nextjs/lib/utils";
+
 import {
   ResizableHandle,
   ResizablePanel,
@@ -16,21 +18,21 @@ import { Settings } from "@/nextjs/components/settings";
 import { Themes } from "@/nextjs/components/themes";
 
 interface ResizableProps {
-  top?: number;
-  left?: number;
-  right?: number;
-  bottom?: number;
+  top: number;
+  left: number;
+  right: number;
+  bottom: number;
 }
 
 export function Resizable(props: ResizableProps) {
   const [_window, setWindowObject] = React.useState<any>(null);
   const screenWidth = _window?.screen.width;
   const screenHeight = _window?.screen.height;
-  const top = 100 - ((screenHeight - (props.top ?? 0)) / screenHeight) * 100;
-  const left = 100 - ((screenWidth - (props.left ?? 0)) / screenWidth) * 100;
-  const right = 100 - ((screenWidth - (props.right ?? 0)) / screenWidth) * 100;
-  const bottom =
-    100 - ((screenHeight - (props.bottom ?? 0)) / screenHeight) * 100;
+
+  const top = pixelTOPercentage(props.top, screenHeight);
+  const left = pixelTOPercentage(props.left, screenWidth);
+  const right = pixelTOPercentage(props.right, screenWidth);
+  const bottom = pixelTOPercentage(props.bottom, screenHeight);
 
   React.useEffect(() => {
     setWindowObject(globalThis.window);
