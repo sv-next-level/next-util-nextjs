@@ -52,7 +52,7 @@ export function Customizer(props: CustomizerProps) {
           </div>
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
