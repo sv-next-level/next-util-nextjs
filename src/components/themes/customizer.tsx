@@ -36,7 +36,7 @@ export function Customizer(props: CustomizerProps) {
 
   return (
     <div
-      className="mr-4 mt-2 rounded-[0.5rem] border bg-white p-6 dark:bg-zinc-950"
+      className="rounded-[0.5rem] border bg-white p-6 dark:bg-zinc-950"
       onMouseEnter={() => props.setOpen(true)}
       onMouseLeave={() => props.setOpen(undefined)}
     >
