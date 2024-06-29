@@ -1,5 +1,7 @@
 "use client";
 
+import { SettingsIcon } from "@/nextjs/assets";
+
 import { Button } from "@/nextjs/components/ui/button";
 import {
   DropdownMenu,
@@ -7,8 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/nextjs/components/ui/dropdown-menu";
-
-import { SettingsIcon } from "@/nextjs/assets";
 
 export function Settings() {
   return (

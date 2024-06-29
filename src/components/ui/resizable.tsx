@@ -2,9 +2,8 @@
 
 import * as ResizablePrimitive from "react-resizable-panels";
 
-import { cn } from "@/nextjs/lib/utils";
-
 import { GripVerticalIcon } from "@/nextjs/assets";
+import { cn } from "@/nextjs/lib/utils";
 
 const ResizablePanelGroup = ({
   className,

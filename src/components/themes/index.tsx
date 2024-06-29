@@ -3,6 +3,9 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 
+import { MoonIcon, SunIcon } from "@/nextjs/assets";
+import { modes } from "@/nextjs/registry";
+
 import { Button } from "@/nextjs/components/ui/button";
 import {
   Tooltip,
@@ -12,9 +15,6 @@ import {
 } from "@/nextjs/components/ui/tooltip";
 
 import { Customizer } from "@/nextjs/components/themes/customizer";
-
-import { MoonIcon, SunIcon } from "@/nextjs/assets";
-import { modes } from "@/nextjs/registry";
 
 export function Themes() {
   const { theme, systemTheme, setTheme } = useTheme();
