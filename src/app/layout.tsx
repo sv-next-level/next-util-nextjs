@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "@/nextjs/styles/globals.css";
 import "@/nextjs/styles/themes.css";
 
-import { siteConfig } from "@/nextjs/config/site";
+import { siteConfig } from "@/config/site";
 import { Provider as ReduxStoreProvider } from "@/nextjs/lib/redux/store";
 
 import { TopLoading } from "@/nextjs/components/loading";
