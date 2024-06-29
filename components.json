@@ -11,7 +11,7 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/nextjs/components",
-    "utils": "@/nextjs/lib/utils"
+    "components": "@/components",
+    "utils": "@/lib/utils"
   }
 }
