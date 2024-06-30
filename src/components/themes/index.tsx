@@ -47,7 +47,7 @@ export function Themes() {
             <span className="sr-only">Toggle theme</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="mr-4 mt-1 bg-inherit p-1 pr-0 text-inherit">
+        <TooltipContent className="mr-2 mt-1 bg-inherit p-1 pr-0 text-inherit">
           <Customizer setOpen={setOpen} />
         </TooltipContent>
       </Tooltip>

@@ -45,21 +45,20 @@ export function Resizable(props: ResizableProps) {
         <ResizablePanelGroup direction="vertical">
           {top ? (
             <>
-              <ResizablePanel
-                defaultSize={top}
-                className="flex justify-between"
-              >
-                <div className="my-auto ml-2 mr-4 flex justify-start gap-1">
-                  <Time />
-                </div>
-                <div className="my-auto ml-2 mr-4 flex justify-end gap-1">
-                  <Link href="/" className="my-auto text-primary underline">
-                    Loader
-                  </Link>
-                  <Themes />
-                  <Settings />
-                  <Apps />
-                  <Accounts />
+              <ResizablePanel defaultSize={top}>
+                <div className="flex h-full justify-between gap-1 px-2">
+                  <div className="my-auto flex justify-start gap-1 overflow-auto p-px">
+                    <Time />
+                  </div>
+                  <div className="my-auto flex justify-end gap-1">
+                    <Link href="/" className="my-auto text-primary underline">
+                      Loader
+                    </Link>
+                    <Themes />
+                    <Settings />
+                    <Apps />
+                    <Accounts />
+                  </div>
                 </div>
               </ResizablePanel>
               <ResizableHandle

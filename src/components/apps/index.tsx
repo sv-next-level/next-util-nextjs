@@ -27,7 +27,7 @@ export function Apps() {
           <span className="sr-only">Apps</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" className="mr-1 mt-2">
+      <DropdownMenuContent align="center" className="mr-2 mt-2">
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <CircleUser className="mr-2 size-4" /> Account

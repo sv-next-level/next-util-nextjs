@@ -19,7 +19,7 @@ export function Settings() {
           <span className="sr-only">Settings</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="mr-4 mt-2">
+      <DropdownMenuContent align="start" className="mr-2 mt-2">
         <DropdownMenuItem>item 1</DropdownMenuItem>
         <DropdownMenuItem>item 2</DropdownMenuItem>
         <DropdownMenuItem>item 3</DropdownMenuItem>
