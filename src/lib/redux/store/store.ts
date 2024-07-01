@@ -2,12 +2,14 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 
-import themeReducer from "@/nextjs/lib/redux/features/theme/slice";
+import { reducers } from "@/lib/redux/features";
+import { reducers as nextjsReducers } from "@/nextjs/lib/redux/features";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      theme: themeReducer,
+      ...reducers,
+      ...nextjsReducers,
     },
   });
 };
