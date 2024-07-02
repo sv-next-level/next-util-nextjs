@@ -1,8 +1,8 @@
-"use client";
-
-import * as React from "react";
+import React from "react";
 
 import { ChevronDownIcon } from "@/nextjs/assets";
+import { useChartTime } from "@/nextjs/hooks";
+import { cn } from "@/nextjs/lib/utils";
 
 import { Button } from "@/nextjs/components/ui/button";
 import {
@@ -20,14 +20,11 @@ import {
 import { TimeAccordion } from "@/nextjs/components/chart/time/accordion";
 import { TimeAdd } from "@/nextjs/components/chart/time/add";
 
-import {
-  ChartTime,
-  ChartTimeFormat,
-  chartTimeFormat,
-  INITIAL_CHART_TIME_LIST,
-} from "@/chart/time/list";
+import { ChartTime, ChartTimeFormat, chartTimeFormat } from "@/chart/time/list";
 
 export function Time() {
+  const { chartTimeList, updateChartTime } = useChartTime();
+
   const groupAndSort = (arr: ChartTimeFormat[]): ChartTimeFormat[][] => {
     // Group by format
     const grouped = arr.reduce((obj: any, item: ChartTimeFormat) => {
@@ -40,21 +37,26 @@ export function Time() {
 
     // Sort each group by value
     const sortedGroups = Object.keys(grouped).map((key) => {
-      return grouped[key].sort(
-        (a: ChartTime, b: ChartTime) => a.number - b.number,
-      );
+      return grouped[key].sort((a: ChartTime, b: ChartTime) => a.time - b.time);
     });
 
     return sortedGroups;
   };
 
   const listOfList: ChartTimeFormat[][] = groupAndSort(
-    INITIAL_CHART_TIME_LIST.map((item) => chartTimeFormat(item)),
+    chartTimeList.list
+      // .concat(chartTimeList.chartTime)
+      .map((item) => chartTimeFormat(item)),
   );
 
   const starList: ChartTimeFormat[] = listOfList
     .flat()
-    .filter((item) => item.star);
+    .filter((item) => item.star)
+    .concat(chartTimeFormat(chartTimeList.chartTime))
+    .filter(
+      (value, index, self) =>
+        index === self.findIndex((t) => t.short === value.short),
+    );
 
   return (
     <DropdownMenu>
@@ -63,7 +65,19 @@ export function Time() {
           <TooltipProvider key={item.short}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" className="px-1">
+                <Button
+                  variant="ghost"
+                  className={cn(
+                    "px-1",
+                    chartTimeList.chartTime.format === item.format &&
+                      chartTimeList.chartTime.time === item.time
+                      ? "text-primary bg-secondary"
+                      : null,
+                  )}
+                  onClick={() => {
+                    updateChartTime(item);
+                  }}
+                >
                   {item.short}
                 </Button>
               </TooltipTrigger>

@@ -1,6 +1,5 @@
-import * as React from "react";
-
-import { StarIcon } from "@/nextjs/assets";
+import { CrossIcon, StarIcon } from "@/nextjs/assets";
+import { useChartTime } from "@/nextjs/hooks";
 import { cn } from "@/nextjs/lib/utils";
 
 import {
@@ -27,47 +26,114 @@ interface TimeAccordionProps {
 }
 
 export function TimeAccordion(props: TimeAccordionProps) {
+  const {
+    chartTimeList,
+    removeChartTimeList,
+    starChartTimeList,
+    updateChartTime,
+  } = useChartTime();
+
   return (
     <ThemeWrapper>
       <Accordion type="multiple" className="w-44">
-        {props.list.map((times, index) => {
+        {props.list.map((chartTimeFormats: ChartTimeFormat[]) => {
           return (
-            <AccordionItem key={index} value={`${index}`}>
+            <AccordionItem
+              key={chartTimeFormats[0].format}
+              value={chartTimeFormats[0].format}
+            >
               <AccordionTrigger className="my-1 p-1 text-xs opacity-50 hover:rounded-sm hover:bg-secondary hover:no-underline">
-                {times[0].format}
+                {chartTimeFormats[0].format}
               </AccordionTrigger>
               <AccordionContent className="pb-1">
-                {times.map((item: ChartTimeFormat) => {
+                {chartTimeFormats.map((chartTimeFormat: ChartTimeFormat) => {
                   return (
                     <DropdownMenuItem
-                      key={item.label}
-                      className="group flex justify-between"
+                      key={chartTimeFormat.label}
+                      className={cn(
+                        "group flex justify-between",
+                        chartTimeList.chartTime.format ===
+                          chartTimeFormat.format &&
+                          chartTimeList.chartTime.time === chartTimeFormat.time
+                          ? "!text-primary bg-secondary"
+                          : null,
+                      )}
                     >
-                      {item.label}
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              className={cn(
-                                "hidden h-auto rounded-sm p-0.5 opacity-50 hover:opacity-100 group-hover:block",
-                                item.star ? "opacity-100 block" : null,
-                              )}
-                            >
-                              <StarIcon
+                      <p
+                        onClick={() => {
+                          updateChartTime(chartTimeFormat);
+                        }}
+                        className="w-full"
+                      >
+                        {chartTimeFormat.label}
+                      </p>
+                      <div className="flex gap-1">
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
                                 className={cn(
-                                  "size-4 stroke-primary",
-                                  item.star ? "fill-primary" : null,
+                                  "hidden h-auto rounded-sm p-0.5 opacity-50 hover:opacity-100 group-hover:block",
                                 )}
-                              />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            {(item.star ? "Remove from" : "Add to") +
-                              " favorites"}
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                                onClick={() => {
+                                  removeChartTimeList({
+                                    format: chartTimeFormat.format,
+                                    time: chartTimeFormat.time,
+                                    star: chartTimeFormat.star,
+                                  });
+                                }}
+                              >
+                                <CrossIcon
+                                  className={cn(
+                                    "size-4 stroke-primary",
+                                    chartTimeFormat.star
+                                      ? "fill-primary"
+                                      : null,
+                                  )}
+                                />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>Remove</TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                className={cn(
+                                  "hidden h-auto rounded-sm p-0.5 opacity-50 hover:opacity-100 group-hover:block",
+                                  chartTimeFormat.star
+                                    ? "opacity-100 block"
+                                    : null,
+                                )}
+                                onClick={() => {
+                                  starChartTimeList({
+                                    format: chartTimeFormat.format,
+                                    time: chartTimeFormat.time,
+                                    star: !chartTimeFormat.star,
+                                  });
+                                }}
+                              >
+                                <StarIcon
+                                  className={cn(
+                                    "size-4 stroke-primary",
+                                    chartTimeFormat.star
+                                      ? "fill-primary"
+                                      : null,
+                                  )}
+                                />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              {(chartTimeFormat.star
+                                ? "Remove from"
+                                : "Add to") + " favorites"}
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
                     </DropdownMenuItem>
                   );
                 })}
