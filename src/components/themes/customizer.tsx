@@ -1,9 +1,7 @@
-"use client";
-
 import * as React from "react";
 import { useTheme } from "next-themes";
 
-import { initialState } from "@/nextjs/lib/redux/features";
+import { initialState } from "@/nextjs/lib/redux/features/theme/slice";
 import { cn } from "@/nextjs/lib/utils";
 
 import { Button } from "@/nextjs/components/ui/button";

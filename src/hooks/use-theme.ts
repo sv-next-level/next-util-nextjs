@@ -1,4 +1,4 @@
-import { setTheme, ThemeState } from "@/nextjs/lib/redux/features";
+import { setTheme, ThemeState } from "@/nextjs/lib/redux/features/theme/slice";
 import { useAppDispatch, useAppSelector } from "@/nextjs/lib/redux/store";
 
 export function useTheme() {
