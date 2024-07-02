@@ -2,8 +2,10 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 
-import { reducers } from "@/lib/redux/features";
-import { reducers as nextjsReducers } from "@/nextjs/lib/redux/features";
+import {
+  reducers as nextjsReducers,
+  reducers,
+} from "@/nextjs/lib/redux/features";
 
 export const makeStore = () => {
   return configureStore({
