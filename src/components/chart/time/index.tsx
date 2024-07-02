@@ -44,9 +44,7 @@ export function Time() {
   };
 
   const listOfList: ChartTimeFormat[][] = groupAndSort(
-    chartTimeList.list
-      // .concat(chartTimeList.chartTime)
-      .map((item) => chartTimeFormat(item)),
+    chartTimeList.list.map((item) => chartTimeFormat(item)),
   );
 
   const starList: ChartTimeFormat[] = listOfList
@@ -54,8 +52,11 @@ export function Time() {
     .filter((item) => item.star)
     .concat(chartTimeFormat(chartTimeList.chartTime))
     .filter(
-      (value, index, self) =>
-        index === self.findIndex((t) => t.short === value.short),
+      (chartTime, index, self) =>
+        index ===
+        self.findIndex(
+          (chartTimeFormat) => chartTimeFormat.short === chartTime.short,
+        ),
     );
 
   return (
@@ -69,9 +70,9 @@ export function Time() {
                   variant="ghost"
                   className={cn(
                     "px-1",
-                    chartTimeList.chartTime.format === item.format &&
-                      chartTimeList.chartTime.time === item.time
-                      ? "text-primary bg-secondary"
+                    chartTimeList.chartTime.time === item.time &&
+                      chartTimeList.chartTime.format === item.format
+                      ? "!text-primary bg-secondary"
                       : null,
                   )}
                   onClick={() => {

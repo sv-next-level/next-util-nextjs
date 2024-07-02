@@ -9,8 +9,8 @@ import {
   ChevronDownIcon,
   ChevronUpDownIcon,
   ChevronUpIcon,
-} from "@/assets";
-import { cn } from "@/lib/utils";
+} from "@/nextjs/assets";
+import { cn } from "@/nextjs/lib/utils";
 
 const Select = SelectPrimitive.Root;
 
