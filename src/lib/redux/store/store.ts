@@ -11,6 +11,10 @@ export const makeStore = () => {
       ...reducers,
       ...nextjsReducers,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
 };
 
