@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { useTheme } from "next-themes";
+import { useTheme as useNextTheme } from "next-themes";
 
 import { MoonIcon, SunIcon } from "@/nextjs/assets";
+import { useTheme as useCustomTheme } from "@/nextjs/hooks";
 import { modes } from "@/nextjs/registry";
 
 import { Button } from "@/nextjs/components/ui/button";
@@ -17,12 +18,9 @@ import {
 import { Customizer } from "@/nextjs/components/themes/customizer";
 
 export function Themes() {
-  const { theme, systemTheme, setTheme } = useTheme();
+  const { mode } = useCustomTheme();
+  const { setTheme } = useNextTheme();
   const [open, setOpen] = React.useState<true | undefined>(undefined);
-
-  const getTheme = (theme: string) => {
-    return theme === modes[0].name ? modes[1].name : modes[0].name;
-  };
 
   return (
     <TooltipProvider>
@@ -33,13 +31,7 @@ export function Themes() {
             size="icon"
             className="size-9 rounded-full"
             onClick={() => {
-              let currentTheme: string;
-              if (theme !== modes[2].name) {
-                currentTheme = getTheme(theme as string);
-              } else {
-                currentTheme = getTheme(systemTheme as string);
-              }
-              setTheme(currentTheme);
+              setTheme(mode === modes[0].name ? modes[1].name : modes[0].name);
             }}
           >
             <SunIcon className="size-5 dark:hidden" />
@@ -47,8 +39,12 @@ export function Themes() {
             <span className="sr-only">Toggle theme</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="mr-2 mt-1 bg-inherit p-1 pr-0 text-inherit">
-          <Customizer setOpen={setOpen} />
+        <TooltipContent
+          className="mr-2 mt-2 border bg-white p-6 text-inherit shadow-md dark:bg-black"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(undefined)}
+        >
+          <Customizer />
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

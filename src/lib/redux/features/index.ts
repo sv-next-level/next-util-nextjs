@@ -1,5 +1,5 @@
-import themeReducer from "@/nextjs/lib/redux/features/theme/slice";
+import ThemeReducer from "@/nextjs/lib/redux/features/theme/slice";
 
 export const reducers = {
-  theme: themeReducer,
+  theme: ThemeReducer,
 };

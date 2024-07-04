@@ -25,9 +25,11 @@ interface ResizableProps {
 }
 
 export function Resizable(props: ResizableProps) {
-  const [_window, setWindowObject] = React.useState<any>(null);
-  const screenWidth = _window?.screen.width;
-  const screenHeight = _window?.screen.height;
+  const [_window, setWindowObject] = React.useState<
+    (Window & typeof globalThis) | null
+  >(null);
+  const screenWidth = _window?.screen.width || 0;
+  const screenHeight = _window?.screen.height || 0;
 
   const top = pixelTOPercentage(props.top, screenHeight);
   const left = pixelTOPercentage(props.left, screenWidth);

@@ -18,27 +18,33 @@ export interface ThemeState {
   radius: Radius;
 }
 
-export const initialState: ThemeState = {
-  mode: modes[2].name,
-  name: themes[0].name,
-  style: styles[1].name,
-  radius: radius[2],
+export const initialState: {
+  color: Theme["cssVars"];
+  theme: ThemeState;
+} = {
+  color: themes[0].cssVars,
+  theme: {
+    mode: modes[2].name,
+    name: themes[0].name,
+    style: styles[1].name,
+    radius: radius[2],
+  },
 };
 
-export const themeSlice = createSlice({
-  name: "theme",
+export const ThemeSlice = createSlice({
+  name: "ThemeSlice",
   initialState,
   reducers: {
+    setColor: (state, action) => {
+      state.color = action.payload;
+    },
     setTheme: (state, action) => {
-      state.mode = action.payload.mode;
-      state.name = action.payload.name;
-      state.style = action.payload.style;
-      state.radius = action.payload.radius;
+      state.theme = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setTheme } = themeSlice.actions;
+export const { setColor, setTheme } = ThemeSlice.actions;
 
-export default themeSlice.reducer;
+export default ThemeSlice.reducer;
