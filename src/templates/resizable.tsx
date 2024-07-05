@@ -11,6 +11,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/nextjs/components/ui/resizable";
+import { Separator } from "@/nextjs/components/ui/separator";
 
 import { Accounts } from "@/nextjs/components/accounts";
 import { Apps } from "@/nextjs/components/apps";
@@ -49,7 +50,13 @@ export function Resizable(props: ResizableProps) {
               <ResizablePanel defaultSize={top}>
                 <div className="flex h-full justify-between gap-1 px-2">
                   <div className="my-auto flex justify-start gap-1 overflow-auto p-px">
-                    TIME
+                    <div className="flex h-auto items-center space-x-2">
+                      <div>Blog</div>
+                      <Separator orientation="vertical" />
+                      <div>Docs</div>
+                      <Separator orientation="vertical" />
+                      <div>Source</div>
+                    </div>
                   </div>
                   <div className="my-auto flex justify-end gap-1">
                     <Link href="/" className="my-auto text-primary underline">
