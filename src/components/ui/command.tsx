@@ -8,7 +8,7 @@ import { type DialogProps } from "@radix-ui/react-dialog";
 import { SearchIcon } from "@/nextjs/assets";
 import { cn } from "@/nextjs/lib/utils";
 
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/nextjs/components/ui/dialog";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
