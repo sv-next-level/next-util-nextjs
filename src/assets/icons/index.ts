@@ -8,4 +8,5 @@ export * from "@/nextjs/assets/icons/maths";
 export * from "@/nextjs/assets/icons/notification";
 export * from "@/nextjs/assets/icons/shape";
 export * from "@/nextjs/assets/icons/social";
+export * from "@/nextjs/assets/icons/text";
 export * from "@/nextjs/assets/icons/tool";
