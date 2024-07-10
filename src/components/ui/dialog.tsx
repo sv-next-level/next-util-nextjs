@@ -4,8 +4,8 @@ import * as React from "react";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 
-import { cn } from "@/lib/utils";
 import { CrossIcon } from "@/nextjs/assets";
+import { cn } from "@/nextjs/lib/utils";
 
 const Dialog = DialogPrimitive.Root;
 

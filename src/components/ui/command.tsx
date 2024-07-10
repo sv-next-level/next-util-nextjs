@@ -5,8 +5,8 @@ import { Command as CommandPrimitive } from "cmdk";
 
 import { type DialogProps } from "@radix-ui/react-dialog";
 
-import { cn } from "@/lib/utils";
 import { SearchIcon } from "@/nextjs/assets";
+import { cn } from "@/nextjs/lib/utils";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
