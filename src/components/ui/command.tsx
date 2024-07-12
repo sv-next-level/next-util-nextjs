@@ -8,7 +8,11 @@ import { type DialogProps } from "@radix-ui/react-dialog";
 import { SearchIcon } from "@/nextjs/assets";
 import { cn } from "@/nextjs/lib/utils";
 
-import { Dialog, DialogContent } from "@/nextjs/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/nextjs/components/ui/dialog";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -30,7 +34,9 @@ interface CommandDialogProps extends DialogProps {}
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="p-0">
+      {/* Surpassing the warning of aria-describedby & <DialogTitle>*/}
+      <DialogContent className="p-0" aria-describedby={undefined}>
+        <DialogTitle className="hidden"></DialogTitle>
         <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:size-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:size-5">
           {children}
         </Command>
