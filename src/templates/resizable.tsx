@@ -4,6 +4,14 @@ import * as React from "react";
 
 import Link from "next/link";
 
+import {
+  AreaChartIcon,
+  BarChartIcon,
+  BaselineChartIcon,
+  CandlestickChartIcon,
+  HistogramChartIcon,
+  LineChartIcon,
+} from "@/nextjs/assets";
 import { pixelTOPercentage } from "@/nextjs/lib/utils";
 
 import {
@@ -48,15 +56,19 @@ export function Resizable(props: ResizableProps) {
           {top ? (
             <>
               <ResizablePanel defaultSize={top}>
-                <div className="flex h-full justify-between gap-1 px-2">
-                  <div className="my-auto flex justify-start gap-1 overflow-auto p-px">
-                    <div className="flex h-auto items-center space-x-2">
-                      <div>Blog</div>
-                      <Separator orientation="vertical" />
-                      <div>Docs</div>
-                      <Separator orientation="vertical" />
-                      <div>Source</div>
-                    </div>
+                <div className="flex h-full justify-between overflow-x-scroll px-2">
+                  <div className="flex items-center justify-start gap-4">
+                    <AreaChartIcon />
+                    <Separator orientation="vertical" />
+                    <BarChartIcon />
+                    <Separator orientation="vertical" />
+                    <BaselineChartIcon />
+                    <Separator orientation="vertical" />
+                    <CandlestickChartIcon />
+                    <Separator orientation="vertical" />
+                    <HistogramChartIcon />
+                    <Separator orientation="vertical" />
+                    <LineChartIcon />
                   </div>
                   <div className="my-auto flex justify-end gap-1">
                     <Link href="/" className="my-auto text-primary underline">
