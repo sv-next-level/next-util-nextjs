@@ -14,11 +14,11 @@ export const BaselineChartIcon = (props: IconProps): JSX.Element => {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M8 12H6" />
+      <path d="M8 12h-2" />
       <path d="M14 12h-2" />
       <path d="M20 12h-2" />
       <path d="M3 3v18h18" />
-      <path d="m20 7-4 9-7-9-4 9" />
+      <path d="m19 7-4 9-4-9-4 9" />
     </svg>
   );
 };
