@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { toast as sonnerToast } from "sonner";
 
 import Link from "next/link";
 
@@ -14,12 +15,15 @@ import {
 } from "@/nextjs/assets";
 import { pixelTOPercentage } from "@/nextjs/lib/utils";
 
+import { Button } from "@/nextjs/components/ui/button";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/nextjs/components/ui/resizable";
 import { Separator } from "@/nextjs/components/ui/separator";
+import { ToastAction } from "@/nextjs/components/ui/toast";
+import { useToast } from "@/nextjs/components/ui/use-toast";
 
 import { Accounts } from "@/nextjs/components/accounts";
 import { Apps } from "@/nextjs/components/apps";
@@ -34,6 +38,8 @@ interface ResizableProps {
 }
 
 export function Resizable(props: ResizableProps) {
+  const { toast: normalToast } = useToast();
+
   const [_window, setWindowObject] = React.useState<
     (Window & typeof globalThis) | null
   >(null);
@@ -108,7 +114,44 @@ export function Resizable(props: ResizableProps) {
                     <ResizablePanelGroup direction="horizontal">
                       <ResizablePanel>content left</ResizablePanel>
                       <ResizableHandle />
-                      <ResizablePanel>content middle</ResizablePanel>
+                      <ResizablePanel>
+                        <div className="size-full items-center">
+                          <Button
+                            variant="outline"
+                            onClick={() => {
+                              sonnerToast("Event has been created", {
+                                description: new Date().toISOString(),
+                                action: {
+                                  label: "Undo",
+                                  onClick: () => console.log("Undo"),
+                                },
+                              });
+                            }}
+                            className="flex"
+                          >
+                            Show Sonner Toast
+                          </Button>
+
+                          <Button
+                            variant="outline"
+                            onClick={() => {
+                              normalToast({
+                                title: "Scheduled: Catch up ",
+                                variant: "destructive",
+                                description: new Date().toISOString(),
+                                action: (
+                                  <ToastAction altText="Goto schedule to undo">
+                                    Undo
+                                  </ToastAction>
+                                ),
+                              });
+                            }}
+                            className="flex"
+                          >
+                            Show Normal Toast
+                          </Button>
+                        </div>
+                      </ResizablePanel>
                       <ResizableHandle />
                       <ResizablePanel>content rigth</ResizablePanel>
                     </ResizablePanelGroup>
