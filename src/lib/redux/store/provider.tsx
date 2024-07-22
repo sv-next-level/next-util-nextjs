@@ -5,11 +5,11 @@ import { Provider as ReduxStoreProvider } from "react-redux";
 
 import { AppStore, makeStore } from "@/nextjs/lib/redux/store";
 
-interface ReduxProviderLayoutProps {
+interface ProviderLayoutProps {
   children: React.ReactNode;
 }
 
-export function Provider({ children }: ReduxProviderLayoutProps) {
+export function Provider({ children }: ProviderLayoutProps) {
   const storeRef = React.useRef<AppStore>();
   if (!storeRef.current) {
     // Create the store instance the first time this renders
