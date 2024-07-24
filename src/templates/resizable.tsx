@@ -14,6 +14,7 @@ import {
   LineChartIcon,
 } from "@/nextjs/assets";
 import { pixelTOPercentage } from "@/nextjs/lib/utils";
+import { fetchData } from "@/nextjs/server/actions";
 
 import { Button } from "@/nextjs/components/ui/button";
 import {
@@ -29,6 +30,8 @@ import { Accounts } from "@/nextjs/components/accounts";
 import { Apps } from "@/nextjs/components/apps";
 import { Settings } from "@/nextjs/components/settings";
 import { Themes } from "@/nextjs/components/themes";
+
+import { title } from "@/common/functions";
 
 interface ResizableProps {
   top: number;
@@ -126,10 +129,11 @@ export function Resizable(props: ResizableProps) {
                                   onClick: () => console.log("Undo"),
                                 },
                               });
+                              fetchData({});
                             }}
                             className="flex"
                           >
-                            Show Sonner Toast
+                            {title("show sonner toast")}
                           </Button>
 
                           <Button
@@ -148,7 +152,7 @@ export function Resizable(props: ResizableProps) {
                             }}
                             className="flex"
                           >
-                            Show Normal Toast
+                            {title("show normal toast")}
                           </Button>
                         </div>
                       </ResizablePanel>
