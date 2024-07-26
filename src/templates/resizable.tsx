@@ -13,6 +13,7 @@ import {
   HistogramChartIcon,
   LineChartIcon,
 } from "@/nextjs/assets";
+import { useScreenSize } from "@/nextjs/hooks";
 import { pixelTOPercentage } from "@/nextjs/lib/utils";
 import { fetchData } from "@/nextjs/server/actions";
 
@@ -42,25 +43,16 @@ interface ResizableProps {
 
 export function Resizable(props: ResizableProps) {
   const { toast: normalToast } = useToast();
+  const { height, width } = useScreenSize();
 
-  const [_window, setWindowObject] = React.useState<
-    (Window & typeof globalThis) | null
-  >(null);
-  const screenWidth = _window?.screen.width || 0;
-  const screenHeight = _window?.screen.height || 0;
-
-  const top = pixelTOPercentage(props.top, screenHeight);
-  const left = pixelTOPercentage(props.left, screenWidth);
-  const right = pixelTOPercentage(props.right, screenWidth);
-  const bottom = pixelTOPercentage(props.bottom, screenHeight);
-
-  React.useEffect(() => {
-    setWindowObject(globalThis.window);
-  }, []);
+  const top = pixelTOPercentage(props.top, height ?? 0);
+  const left = pixelTOPercentage(props.left, width ?? 0);
+  const right = pixelTOPercentage(props.right, width ?? 0);
+  const bottom = pixelTOPercentage(props.bottom, height ?? 0);
 
   return (
     <>
-      {_window ? (
+      {height && width ? (
         <ResizablePanelGroup direction="vertical">
           {top ? (
             <>
