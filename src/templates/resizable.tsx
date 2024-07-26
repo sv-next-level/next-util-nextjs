@@ -10,6 +10,7 @@ import {
   BarChartIcon,
   BaselineChartIcon,
   CandlestickChartIcon,
+  CircleStopwatchIcon,
   HistogramChartIcon,
   LineChartIcon,
 } from "@/nextjs/assets";
@@ -70,6 +71,8 @@ export function Resizable(props: ResizableProps) {
                     <HistogramChartIcon />
                     <Separator orientation="vertical" />
                     <LineChartIcon />
+                    <Separator orientation="vertical" />
+                    <CircleStopwatchIcon />
                   </div>
                   <div className="my-auto flex justify-end gap-1">
                     <Link href="/" className="my-auto text-primary underline">
