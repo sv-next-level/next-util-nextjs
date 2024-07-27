@@ -15,7 +15,7 @@ import {
   LineChartIcon,
 } from "@/nextjs/assets";
 import { useScreenSize } from "@/nextjs/hooks";
-import { pixelTOPercentage } from "@/nextjs/lib/utils";
+import { cn, pixelTOPercentage } from "@/nextjs/lib/utils";
 import { fetchData } from "@/nextjs/server/actions";
 
 import { Button } from "@/nextjs/components/ui/button";
@@ -30,8 +30,13 @@ import { useToast } from "@/nextjs/components/ui/use-toast";
 
 import { Accounts } from "@/nextjs/components/accounts";
 import { Apps } from "@/nextjs/components/apps";
+import { DataTable } from "@/nextjs/components/data-table/data-table";
 import { Settings } from "@/nextjs/components/settings";
 import { Themes } from "@/nextjs/components/themes";
+
+import { columns } from "@/nextjs/data/data-table/columns";
+import { DataTableToolbar } from "@/nextjs/data/data-table/data-table-toolbar";
+import * as tasks from "@/nextjs/data/data-table/data/tasks.json";
 
 import { title } from "@/common/functions";
 
@@ -157,7 +162,16 @@ export function Resizable(props: ResizableProps) {
                   </ResizablePanel>
 
                   <ResizableHandle />
-                  <ResizablePanel defaultSize={30}></ResizablePanel>
+                  <ResizablePanel defaultSize={50} className="relative">
+                    <div className={cn("h-screen overflow-scroll p-4 pb-24")}>
+                      <DataTable
+                        columns={columns}
+                        data={tasks}
+                        DataTableToolbar={DataTableToolbar}
+                        pageSizes={[1, 2, 3]}
+                      />
+                    </div>
+                  </ResizablePanel>
                 </ResizablePanelGroup>
               </ResizablePanel>
 
