@@ -6,7 +6,7 @@ if (axiosInstance) {
   // Add the authorization token to the authorization request object
   axiosInstance.interceptors.request.use(
     (req: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-      console.log("🚀 ~ interceptos-req req:", req);
+      // console.log("🚀 ~ interceptos-req req:", req);
 
       // TODO: do not store token on localstorage!!!
       // const token = window.localStorage.getItem("token");
@@ -14,7 +14,7 @@ if (axiosInstance) {
       return req;
     },
     (error) => {
-      console.log("🚀 ~ interceptos-req error:", error);
+      // console.log("🚀 ~ interceptos-req error:", error);
       // Do something with request error
       return Promise.reject(error);
     },

@@ -5,12 +5,12 @@ import { axiosInstance } from "@/nextjs/server/client/axios/instance";
 if (axiosInstance) {
   axiosInstance.interceptors.response.use(
     (res) => {
-      console.log("🚀 ~ interceptos-res res:", res.data);
+      // console.log("🚀 ~ interceptos-res res:", res.data);
       return res;
     },
     (error) => {
       // Do something with request error
-      console.log("🚀 ~ interceptos-res error:", error);
+      // console.log("🚀 ~ interceptos-res error:", error);
       return Promise.reject(error);
     },
     {
